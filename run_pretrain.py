@@ -30,7 +30,8 @@ from pretrain.runner import Runner
 # PRETRAIN ARGUMENTS #
 ######################
 def get_pretrain_args():
-    parser = argparse.ArgumentParser()
+    #将argparse包中的ArgumentParser类实例化
+    parser = argparse.ArgumentParser() #argparse 模块可以让人轻松编写用户友好的命令行接口
 
     # use a ckpt as the experiment initialization
     # if set, all the following args and config will be overwrited by the ckpt, except args.mode
@@ -40,19 +41,21 @@ def get_pretrain_args():
     parser.add_argument('-c', '--config', help='The yaml file for configuring the whole experiment, except the upstream model')
 
     # upstream settings
-    parser.add_argument('-u', '--upstream', choices=os.listdir('pretrain/'))
-    parser.add_argument('-g', '--upstream_config', default='', metavar='PATH', help='Only set when the specified upstream need it')
+    parser.add_argument('-u', '--upstream', choices=os.listdir('pretrain/')) #choices -upstream可以从pretrain里面的方法做选择
+    parser.add_argument('-g', '--upstream_config', default='', metavar='PATH', help='Only set when the specified upstream need it') #metavar -使用情况消息中参数的名称。
 
     # experiment directory, choose one to specify
     # expname uses the default root directory: result/pretrain
-    parser.add_argument('-n', '--expname', help='Save experiment at result/pretrain/expname')
-    parser.add_argument('-p', '--expdir', help='Save experiment at expdir')
+    parser.add_argument('-n', '--expname', help='Save experiment at result/pretrain/expname') #help 是一个字符串，其中包含参数的简短说明。
+    parser.add_argument('-p', '--expdir', help='Save experiment at expdir') 
 
-    # options
-    parser.add_argument('--seed', default=1337, type=int)
-    parser.add_argument('--device', default='cuda', help='model.to(device)')
-    parser.add_argument('--multi_gpu', action='store_true', help='Enables multi-GPU training')
-
+    # option
+    # options 当seed调用的时候 parser.parse_args(['--seed', '100']) 则返回seed=100;否则seed默认为 1337
+    parser.add_argument('--seed', default=1337, type=int) 
+    parser.add_argument('--device', default='cuda', help='model.to(device)') #默认device 是cuda
+    parser.add_argument('--multi_gpu', action='store_true', help='Enables multi-GPU training')  #返回multi-gpu=true
+    
+    #calling parse_args() will return an object with all attributes
     args = parser.parse_args()
 
     if args.past_exp:
