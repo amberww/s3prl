@@ -35,7 +35,7 @@ def get_pretrain_args():
 
     # use a ckpt as the experiment initialization
     # if set, all the following args and config will be overwrited by the ckpt, except args.mode
-    parser.add_argument('-e', '--past_exp', metavar='{CKPT_PATH,CKPT_DIR}', help='Resume training from a checkpoint')
+    parser.add_argument('-e', '--past_exp', metavar='{CKPT_PATH,CKPT_DIR}', help='Resume training from a checkpoint') #metavar 参数被用来生成帮助信息
 
     # configuration for the experiment, including runner and downstream
     parser.add_argument('-c', '--config', help='The yaml file for configuring the whole experiment, except the upstream model')
