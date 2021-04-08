@@ -36,7 +36,7 @@ python3 preprocess/generate_len_for_bucket.py -i PATH_TO_YOUR/LibriSpeech/
     ```
     - If `n_epochs` is given, `total_steps` will be ignored.
     - Set `n_epochs` to `-1` if you want to use `total_steps` instead
-    - The acutal batch size = `gradient_accumulate_steps` * `train_batch_size`
+    - The acutal batch size = `gradient_accumulate_steps` * `train_batch_size` #一定条件下，batchsize越大训练效果越好，梯度累加则实现了batchsize的变相扩大，如果accumulation_steps为8，则batchsize '变相' 扩大了8倍，使用时需要注意，学习率也要适当放大。
     - Modify the `sets` list to choose pretraining subsets.
 
     
